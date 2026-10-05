@@ -1,0 +1,19 @@
+{
+  "name": "gocycling",
+  "owner": {
+    "name": "gocycling.ai",
+    "url": "https://gocycling.ai"
+  },
+  "metadata": {
+    "description": "The gocycling.ai plugin for Claude: cycling, gravel and MTB route planning on real OpenStreetMap data."
+  },
+  "plugins": [
+    {
+      "name": "gocycling",
+      "source": "./",
+      "description": "Plan cycling, gravel and MTB routes on real OpenStreetMap data. Turns a ride request into a routed, rideable GPX with honest distance and climbing numbers, and a shareable map link.",
+      "category": "productivity",
+      "homepage": "https://gocycling.ai"
+    }
+  ]
+}
