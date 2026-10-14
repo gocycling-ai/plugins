@@ -83,7 +83,7 @@ input: replay returns the same routes, uncharged. In-flight: wait. Expired/unava
 
 ## 5. If it fails
 
-Use the remaining retry, if any, for a supported, error-specific correction preserving those requirements.
+Use any remaining retry for one supported, error-specific fix that keeps those requirements.
 If none exists or it fails again, explain the useful part of the error and what the rider could
 change. Never silently return nothing.
 
@@ -132,7 +132,7 @@ fallback as an accepted route. Keep step 9's access decisions. For safety questi
 > 74% paved · 0% unpaved · 26% unknown · Max steepness: unavailable
 > ▸ [View the route on gocycling.ai](…)
 
-Do not volunteer café stops, points of interest or named cycle routes; offer them and let the rider choose.
+Do not volunteer cafés, POIs or named cycle routes; offer them and let the rider choose.
 
 **Owner pages.** `routeViewerUrl` is the owner page; `routeViewerType: "ownerPage"` marks it.
 `downloadPageUrl` from `export_gpx` is the GPX page. Tell the rider to open the relevant URL and
@@ -279,5 +279,6 @@ Keep the recorded evidence and the selected route version in the GPX handoff.
 `get_route_findings` — climbs with ids and km marks.
 `refine_findings` — propose a candidate avoiding one.
 `decide_refinement` — record the rider's decision; never guess.
-`get_standing_request`, `get_rider_context`, `get_route_lineage` — assumptions, rider setup, lineage.
-`find_route_stops`, `discover_cycle_routes` — on request. Stops spread over the ride or a distance window; disclose truncation.
+`get_standing_request`, `get_rider_context`, `get_route_lineage` — assumptions, setup, lineage.
+`find_route_stops`, `discover_cycle_routes` — on request; spread over the ride or a window; disclose truncation.
+`preview_route_stop_costs` — cost of 1–3 stop IDs; aroundKm selects a pass.
