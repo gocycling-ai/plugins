@@ -15,9 +15,8 @@ You always need the **start point** and the **trip type**. The third depends on 
 - **A→B** → the **destination**. The distance follows from the endpoints; never ask for one.
 - **Heading ride** → the **direction** and **target distance** (e.g. 20 km east).
 
-If any are missing, ask for them in **one** question, then route. Do not run an interview.
-Everything else (bike type, surface, hilliness, scenery) has a sensible default; fix it by refining
-a real route, not by asking in the abstract.
+If any are missing, ask for them in **one** question, then route. Bike type, surface, hilliness
+and scenery have defaults; refine a real route rather than interviewing the rider.
 
 **Trip type is not optional.** "Ride to Lucerne" means either a one-way ride or a loop heading that
 way, and guessing wrong roughly doubles distance. If the rider named a destination without
@@ -77,6 +76,10 @@ For a **loop**, retry when more than **~20 % off the target distance**. For **A�
 distance: retry only for the opposite of stated flat/hilly or surface intent.
 Poor results and failures share two attempts total, including alternativeIndex changes.
 Report the best successful route.
+
+MCP creators accept `clientRequestId` (1–64 chars). After response loss, resend the same ID and
+input: replay returns the same routes, uncharged. In-flight: wait. Expired/unavailable: use
+`list_routes`; never switch IDs to retry an uncertain creation.
 
 ## 5. If it fails
 
@@ -153,7 +156,7 @@ call with every change in it.
 | "Quieter roads", "flatter", "scenic" | `refine_route` with `setPreference`; "flatter" keeps any ascent target |
 | Explicit withdrawal — "forget the wet-weather thing" | `refine_route` with `clearPreference` |
 | A different length, on a loop — "make it 60 km" | `refine_route` with `setDistanceTarget` |
-| Choices — "show me a few options" | `generate_route_alternatives` |
+| Choices | `generate_route_alternatives`; existing ride: `sourceRouteId` |
 | A climb or steep section gone — "avoid that climb", "too steep near the top" | `get_route_findings` first, then `refine_findings` with that finding's id, type and ordinal |
 | A genuinely different trip — new start, destination or shape | A fresh computation (step 3) |
 
@@ -214,6 +217,8 @@ failing. An undecided candidate is deleted 7 days after creation; say that deadl
 
 ## 9. Working with a route that already exists
 
+Use `list_routes` IDs in `get_route`/`export_gpx`.
+
 Every route has a `routeId`; `get_route`, `analyze_elevation`, `analyze_route_safety`,
 `get_standing_request` and `export_gpx` all take one. Never recompute a route to answer a question
 about it, and keep the exact selected `routeId` for readback and export, including when choosing an
@@ -264,15 +269,15 @@ Keep the recorded evidence and the selected route version in the GPX handoff.
 
 ## Tools at a glance
 
-`geocode` — place names → coordinates. Always your first call for any named place.
-`calculate_route`, `generate_loop_route` — routing calls for loops and A→B rides.
-`route_segment`, `compose_route` — heading rides, or multi-leg tours from separately routed legs; to add a stop on an existing ride, use `refine_route`.
-`refine_route`, `generate_route_alternatives` — change an existing route.
-`analyze_elevation`, `analyze_route_safety` — inspect: where the climbing is; should I ride this.
-`get_route`, `export_gpx`, `import_gpx` — retrieve by id, hand off as GPX, bring a GPX in.
-`get_route_findings` — the route's climbs as named findings with ids, ordinals and km marks.
-`refine_findings` — turn one of those findings into a proposed candidate that avoids it.
-`decide_refinement` — record the rider's own yes or no about a candidate. Never called on a guess.
-`get_standing_request`, `get_rider_context`, `get_route_lineage` — what a route assumes; what the
-rider's setup is; how a route got to be the way it is.
-`find_route_stops`, `discover_cycle_routes` — on request, not by default.
+`get_quota` — usage and first slot release; `list_routes` — rides. Uncharged.
+`geocode` — place coordinates; first for every named place.
+`calculate_route`, `generate_loop_route` — A→B and loops.
+`route_segment`, `compose_route` — heading rides and multi-leg tours. Existing stops: `refine_route`.
+`refine_route`, `generate_route_alternatives` — changes and choices.
+`analyze_elevation`, `analyze_route_safety` — climbing and safety.
+`get_route`, `export_gpx`, `import_gpx` — retrieve, export, import.
+`get_route_findings` — climbs with ids, ordinals and km marks.
+`refine_findings` — propose a candidate avoiding a finding.
+`decide_refinement` — record the rider's decision; never guess.
+`get_standing_request`, `get_rider_context`, `get_route_lineage` — route assumptions, rider setup, lineage.
+`find_route_stops`, `discover_cycle_routes` — on request.
