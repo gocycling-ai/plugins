@@ -1,4 +1,4 @@
-# gocycling — the gocycling.ai plugin for Claude
+# GoCycling AI — the gocycling.ai plugin for Claude
 
 Plan cycling, gravel and MTB routes on real OpenStreetMap data, in Claude on the web, in Claude
 Desktop and in Claude Code.
