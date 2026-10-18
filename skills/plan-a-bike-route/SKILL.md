@@ -144,9 +144,8 @@ the type alone does not state privacy.
 
 ## 8. When the rider wants a change
 
-`refine_route` is the one verb for changing a route the rider already has. It keeps every earlier
-preference, avoided area and target distance and changes only what the change-set names. Send one
-call with every change in it.
+`refine_route` changes only named fields, keeping earlier preferences, avoidances, distance and
+stop targets. Send all changes in one call.
 
 | The rider wants | Use |
 |---|---|
@@ -156,7 +155,8 @@ call with every change in it.
 | "Quieter roads", "flatter", "scenic" | `refine_route` with `setPreference`; "flatter" keeps any ascent target |
 | Explicit withdrawal — "forget the wet-weather thing" | `refine_route` with `clearPreference` |
 | A different length, on a loop — "make it 60 km" | `refine_route` with `setDistanceTarget` |
-| Choices | `generate_route_alternatives`; existing ride: `sourceRouteId` |
+| Stop position | `setStopPosition` / `clearStopPosition`: select stopId or waypoint index; pendingStops use stopId only. Set half:first/second OR absolute aroundKm. Quote fresh stopPositions, including misses/unknown |
+| Choices | `generate_route_alternatives` + sourceRouteId; LOOP edits: sourceOperations. Quote candidate stopPositions |
 | A climb or steep section gone — "avoid that climb", "too steep near the top" | `get_route_findings` first, then `refine_findings` with that finding's id, type and ordinal |
 | A genuinely different trip — new start, destination or shape | A fresh computation (step 3) |
 
@@ -166,13 +166,10 @@ a candidate and verdict; `decide_refinement` comes after it. Call an offered re-
 **source** route, never the candidate. Send `shape` only when the rider specified ("just this passage"
 or "the whole route"); otherwise omit it.
 
-`refine_route` refuses two things, correctly: resizing an A→B route (compute a fresh one) and a
-target distance too short to still pass through the carried via-points.
+`refine_route` refuses A→B resizing (compute afresh) and targets too short for carried stops.
 
-For a fresh computation, carry over only the **waypoints** the *current* request calls for:
-re-sending via-points from the route being replaced produces a figure-eight. That rule is about
-waypoints only — never drop a bike type, a preference or an avoided area because the rider did not
-repeat it.
+For a fresh computation, carry only **waypoints** the current request names; old vias can produce
+a figure-eight. Still retain bike type, preferences and avoidances the rider did not repeat.
 
 ### Which finding the rider means
 
