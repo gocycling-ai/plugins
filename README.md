@@ -3,17 +3,22 @@
 Plan cycling, gravel and MTB routes on real OpenStreetMap data, in Claude on the web, in Claude
 Desktop and in Claude Code.
 
-## Install
+## Install & Connect (free account required)
 
 Step-by-step instructions: **https://gocycling.ai/claude**
+
+Routing, interactive maps and GPX downloads require connecting a **free GoCycling account** over
+OAuth (no API key needed — you can sign in or create an account during the connection step).
 
 **claude.ai and Claude Desktop**
 
 1. Open **Customize > Plugins**, choose **Add**, then **Add marketplace**, and enter
    `gocycling-ai/plugins`.
 2. Install the **gocycling** plugin.
-3. On the plugin's **Connectors** tab, add the gocycling connector and connect it. A browser window
-   opens to sign in at gocycling.ai, or to create an account there.
+3. Open **Customize > Plugins > gocycling**, switch to **Connectors**, and click **Connect** on
+   **gocycling**. A browser window opens to sign in at gocycling.ai, or to create a free account
+   there.
+4. In a chat, open **+ > Connectors** and make sure **gocycling** is turned on.
 
 **Claude Code**
 
@@ -22,8 +27,9 @@ Step-by-step instructions: **https://gocycling.ai/claude**
 /plugin install gocycling@gocycling
 ```
 
-The first tool call opens a browser to sign in at gocycling.ai. There is no API key to paste and
-nothing to configure: the plugin connects to the server over OAuth.
+Then run `/mcp`, pick **gocycling**, and sign in at gocycling.ai in the browser window that opens
+(or let the first tool call open it). There is no API key to paste and nothing to configure: the
+plugin connects to the server over OAuth.
 
 ## What you get
 
