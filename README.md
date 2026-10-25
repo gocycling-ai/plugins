@@ -20,6 +20,11 @@ OAuth (no API key needed — you can sign in or create an account during the con
    there.
 4. In a chat, open **+ > Connectors** and make sure **gocycling** is turned on.
 
+**Starting from gocycling.ai instead?** The **Add to Claude** button on
+https://gocycling.ai/claude opens Claude with the gocycling connector filled in: choose **Add**,
+**Connect**, then **Allow**. It works on every individual Claude plan, Free included, and adds the
+tools without this plugin's route-planning guidance. Use the button or this plugin, not both.
+
 **Claude Code**
 
 ```
