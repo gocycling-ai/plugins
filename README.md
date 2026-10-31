@@ -1,4 +1,4 @@
-# GoCycling AI — the gocycling.ai plugin for Claude
+# GoCycling.ai — the cycling route planner plugin for Claude
 
 Plan cycling, gravel and MTB routes on real OpenStreetMap data, in Claude on the web, in Claude
 Desktop and in Claude Code.
@@ -7,7 +7,7 @@ Desktop and in Claude Code.
 
 Step-by-step instructions: **https://gocycling.ai/claude**
 
-Routing, interactive maps and GPX downloads require connecting a **free GoCycling account** over
+Routing, interactive maps and GPX downloads require connecting a **free GoCycling.ai account** over
 OAuth (no API key needed — you can sign in or create an account during the connection step).
 
 **claude.ai and Claude Desktop**

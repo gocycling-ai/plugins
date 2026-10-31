@@ -79,13 +79,13 @@ input: replay returns the same routes, uncharged. In-flight: wait. Expired/unava
 ## 5. If it fails
 
 - **Authentication required (401) or disconnected connector**: every tool call requires signing in
-  with a **free** GoCycling account (created during OAuth sign-in; needed for the private map and
+  with a **free** GoCycling.ai account (created during OAuth sign-in; needed for the private map and
   GPX viewer). Give the rider the steps for their client:
   - **Claude (web/Desktop)**: open **Customize > Plugins > gocycling > Connectors > Connect** (or
     **Customize > Connectors** on Claude Free / custom connector), sign in at gocycling.ai, and turn
     **gocycling** on under **+ > Connectors** in chat. In **Claude Code**, run `/mcp` and choose
     **gocycling**. Guide: https://gocycling.ai/claude
-  - **ChatGPT**: complete the **GoCycling** sign-in prompt in chat. Guide: https://gocycling.ai/chatgpt
+  - **ChatGPT**: complete the **GoCycling.ai** sign-in prompt in chat. Guide: https://gocycling.ai/chatgpt
 - **Routing failure**: use any remaining retry for one supported, error-specific fix keeping rider
   requirements; otherwise explain the error and what the rider could change. Never return nothing.
 
