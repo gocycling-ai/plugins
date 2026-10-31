@@ -272,3 +272,4 @@ Keep the recorded evidence and the selected route version in the GPX handoff.
 `get_standing_request`, `get_rider_context`, `get_route_lineage` — assumptions, setup, lineage.
 `find_route_stops`, `discover_cycle_routes` — on request; spread over the ride or a window; disclose truncation.
 `preview_route_stop_costs` — cost of 1–3 stop IDs; aroundKm selects a pass.
+`estimate_route` — power and workout time/work estimate on a saved route (requires current contentVersion).
