@@ -80,7 +80,8 @@ input: replay returns the same routes, uncharged. In-flight: wait. Expired/unava
 
 - **Authentication required (401) or disconnected connector**: every tool call requires signing in
   with a **free** GoCycling.ai account (created during OAuth sign-in; needed for the private map and
-  GPX viewer). Give the rider the steps for their client:
+  GPX viewer). Do not retry the tool until the rider has signed in. Give the rider the steps for
+  their client:
   - **Claude (web/Desktop)**: open **Customize > Plugins > gocycling > Connectors > Connect** (or
     **Customize > Connectors** on Claude Free / custom connector), sign in at gocycling.ai, and turn
     **gocycling** on under **+ > Connectors** in chat. In **Claude Code**, run `/mcp` and choose
