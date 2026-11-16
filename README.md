@@ -42,9 +42,35 @@ The gocycling.ai routing tools and the route-planning playbook that tells Claude
 geocode a place, route A→B or a loop, see where the climbing actually is, refine a line, export a
 GPX.
 
-Ask for a ride the way you would ask a friend:
+Ask for a ride the way you would ask a friend. Claude needs a start, the kind of ride (a loop, a
+one-way ride or a ride in one direction) and a distance or destination; if one is missing it asks.
+Some examples:
 
 > a 60 km gravel loop from Basel, nothing too steep
+
+> a road ride from Basel to Freiburg via Kandern, on quiet roads
+
+> a 25 km ride heading east from Zürich HB, as flat as possible
+
+And then, in the same chat:
+
+> where is the climbing? avoid the second climb
+
+> add a café stop about halfway
+
+> give me the GPX
+
+Routing covers Europe and the United States. Check access, conditions and the route yourself
+before you ride it.
+
+## Help, privacy and security
+
+- Setup guide and troubleshooting: https://gocycling.ai/claude
+- Support: https://gocycling.ai/contact
+- Security issues: hello@gocycling.ai with "Security" in the subject
+  (also at https://gocycling.ai/.well-known/security.txt)
+- Privacy policy: https://gocycling.ai/privacy
+- Terms of service: https://gocycling.ai/terms
 
 ## How this repository is built
 
